@@ -1,6 +1,7 @@
 import React from 'react';
-import './styles/styles.scss';
+import '../../styles/styles.scss';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 /* const curso = {
     "title": "React desde cero",
@@ -8,10 +9,12 @@ import PropTypes from 'prop-types';
     "price": "50usd"
 }; */
 
-const Curso = ({title, image, price, nombreProfesor}) => (
+const CourseCard = ({id, title, image, price, Professor}) => (
     <article className="card">
         <div className="img-container s-ratio-16-9 s-radius-tr s-radius-tl">
-            <img src={image ? image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQez62kGYiy1nDtps9DNsyCB9mP2Iyul59afA&usqp=CAU"} alt={title ? title : "No hay titulo"} />
+            <Link to={`/cursos/${id}`}>
+                <img src={image ? image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQez62kGYiy1nDtps9DNsyCB9mP2Iyul59afA&usqp=CAU"} alt={title ? title : "No hay titulo"} />
+            </Link>
         </div>
         <div className="card__data s-border s-radius-br s-radius-bl s-pxy-2">
             <h3 className="t5 s-mb-2 s-center">
@@ -24,7 +27,7 @@ const Curso = ({title, image, price, nombreProfesor}) => (
                     <img src="https://edteam-media.s3.amazonaws.com/courses/medium/3ec614b5-a9b7-475c-bf8f-8ba643a129eb.png" alt="Otra imagen"/>t
                 </div>
                 </div>
-                    <span className="small">{`${nombreProfesor}`}</span>
+                    <span className="small">{`${Professor}`}</span>
                 </div>
             </div>
             <div className="s-main-center">
@@ -34,17 +37,17 @@ const Curso = ({title, image, price, nombreProfesor}) => (
     </article>
 )
 
-Curso.propTypes = {
+CourseCard.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.string,
-    profesor: PropTypes.string,
+    professor: PropTypes.string,
 }
-Curso.defaultProps = {
+CourseCard.defaultProps = {
     title: "No se encontro titulo",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQez62kGYiy1nDtps9DNsyCB9mP2Iyul59afA&usqp=CAU",
     price: "__",
-    profesor: "",
+    professor: "",
 }
 
-export default Curso;
+export default CourseCard;
